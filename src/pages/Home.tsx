@@ -11,7 +11,8 @@ import {
     CardTitle,
     CardDescription,
     CardContent,
-} from '@/components/ui/card'; 
+} from '@/components/ui/card';
+import { Footer2 } from '@/components/Footer';
 
 const Home: React.FC = () => {
     const darkMode = useSelector( ( state: RootState ) => state.theme?.darkMode );
@@ -220,6 +221,9 @@ const Home: React.FC = () => {
                 </section>
 
                 {/* Footer Section */}
+                <div className='mt-10 items-center justify-start '>
+                    <Footer2 />
+                </div>
             </div>
         </div>
     );
