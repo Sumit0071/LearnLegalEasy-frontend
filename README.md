@@ -1,54 +1,183 @@
-# React + TypeScript + Vite
+Your updated `README.md` is **well-written and comprehensive** — awesome job! 🙌 Just a few **tiny tweaks** to make it even more polished and professional:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+### ✅ Final Suggested Polishes:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **Fix Markdown syntax** for social links — square brackets are used for link text, and parentheses for URLs.
+2. **Fix the License link** if it's not already in your repo (or remove if not applicable).
+3. **Tiny grammar tweaks** for better clarity and formatting consistency.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### ✅ Updated Final Version:
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
+```md
+# LearnLegal Easy — Frontend
+
+> Simplifying legal information using AI — search less, understand more.
+
+A modern, AI-powered frontend built with **React**, **TypeScript**, and **Vite**, designed to make complex legal terms and processes easy to understand. This SaaS-driven platform offers an intuitive user interface with fast performance and clean code practices.
+
+---
+
+## 🚀 Features
+
+- ✨ Clean, responsive UI with TailwindCSS and Shadcn UI library
+- ⚛️ Built with React + TypeScript
+- ⚡️ Fast development powered by Vite
+- 🎯 AI-powered search and explain interface
+- 🌙 Light/Dark mode toggle
+- 🔍 ESLint + Type Checking with custom configuration
+
+---
+
+## 🛠️ Getting Started
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/your-username/learnlegal-easy.git
+cd learnlegal-easy
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Run the development server
+
+```bash
+npm run dev
+```
+
+The app will be available at `http://localhost:5173`.
+
+---
+
+## 🧱 Folder Structure
+
+```
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── pages/
+│   ├── redux/
+│   ├── App.tsx
+│   └── main.tsx
+├── .eslintrc.js
+├── tsconfig.json
+├── vite.config.ts
+└── README.md
+```
+
+---
+
+## 📦 Scripts
+
+| Command           | Description               |
+| ---------------- | ------------------------- |
+| `npm run dev`     | Run development server    |
+| `npm run build`   | Build for production      |
+| `npm run preview` | Preview production build  |
+| `npm run lint`    | Run ESLint checks         |
+
+---
+
+## 🧠 Tech Stack
+
+- **React** with **TypeScript**
+- **TailwindCSS**
+- **Redux Toolkit** for state management
+- **ESLint** for linting
+- **Vite** for bundling
+- **React Router** for routing
+- **Shadcn UI** for accessible, pre-styled components
+
+---
+
+## 🧹 ESLint Configuration
+
+This project includes a custom ESLint setup with `typescript-eslint`, `eslint-plugin-react-hooks`, and `eslint-plugin-react-refresh`.
+
+```ts
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import tseslint from 'typescript-eslint'
+
+export default tseslint.config(
+  { ignores: ['dist'] },
+  {
+    extends: [js.configs.recommended, ...tseslint.configs.recommended],
+    files: ['**/*.{ts,tsx}'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+    },
+    plugins: {
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
+    },
+    rules: {
+      ...reactHooks.configs.recommended.rules,
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
     },
   },
-})
+)
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+To enable type-aware rules:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```ts
+extends: [
+  ...tseslint.configs.recommendedTypeChecked,
+  ...tseslint.configs.strictTypeChecked,
+  ...tseslint.configs.stylisticTypeChecked,
+],
 ```
+
+Also consider:
+
+- [`eslint-plugin-react-x`](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x)
+- [`eslint-plugin-react-dom`](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom)
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](./LICENSE).
+
+---
+
+## 👨‍💻 Author
+
+**Sumit Adhikari**  
+[LinkedIn](https://www.linkedin.com/in/Sad2004) · [Instagram](https://instagram.com/Sonic_blizard)
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome! If you’d like to contribute, please fork the repo and submit a PR.  
+Let’s build something awesome together 💼✨
+
+---
+```
+
+---
+
+Let me know if you want to add:
+
+- a screenshot or demo gif
+- backend integration instructions
+- deployment steps (e.g., Vercel/Netlify)
+
+I'd be happy to help with those too!
