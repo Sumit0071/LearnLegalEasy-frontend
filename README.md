@@ -159,11 +159,3 @@ Let’s build something awesome together 💼✨
 ```
 
 ---
-
-Let me know if you want to add:
-
-- a screenshot or demo gif
-- backend integration instructions
-- deployment steps (e.g., Vercel/Netlify)
-
-I'd be happy to help with those too!
