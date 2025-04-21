@@ -12,10 +12,11 @@ import {
     CardDescription,
     CardContent,
 } from '@/components/ui/card';
+import ScrollToTop from '@/components/ScrollToTop';
 import { Footer2 } from '@/components/Footer';
 
 const Home: React.FC = () => {
-    const darkMode = useSelector( ( state: RootState ) => state.theme?.darkMode );
+    const darkMode = useSelector((state: RootState) => state.theme?.darkMode);
     const Services = [
         'AI-powered legal document review',
         'Automated contract analysis',
@@ -28,14 +29,19 @@ const Home: React.FC = () => {
     return (
         <div
             id="home"
-            className={`relative min-h-screen overflow-hidden ${darkMode ? 'bg-gray-950 text-white' : 'bg-white text-black'
-                }`}
+            className={`relative min-h-screen overflow-x-hidden ${darkMode ? 'bg-gray-950 text-white' : 'bg-white text-black'}`}
         >
+            {/* Background gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-indigo-100 via-transparent to-indigo-300 opacity-60 z-0 pointer-events-none"></div>
 
-            <NavBar />
+            {/* Fixed NavBar */}
+            <div className="fixed top-0 left-0 w-full z-50 bg-white dark:bg-gray-950 shadow-sm backdrop-blur-md">
+                <NavBar />
+            </div>
 
-            <div className="relative z-10 mt-20 px-6 md:px-20">
+            {/* Main Content */}
+            <div className="relative z-10 pt-24 px-6 md:px-20">
+
                 {/* Hero Section */}
                 <motion.div
                     className="text-center max-w-4xl mx-auto mb-12"
@@ -81,11 +87,7 @@ const Home: React.FC = () => {
                         <span className="w-3 h-3 rounded-full bg-green-400"></span>
                     </div>
                     <div className="bg-gray-700 border-t-0 w-full h-96 rounded-b-lg overflow-hidden">
-                        <video
-                            className="h-full w-full"
-                            controls
-                            aria-label="LearnLegal Easy demo video"
-                        >
+                        <video className="h-full w-full" controls>
                             <source src="https://docs.material-tailwind.com/demo.mp4" type="video/mp4" />
                             Your browser does not support the video tag.
                         </video>
@@ -111,13 +113,13 @@ const Home: React.FC = () => {
                     </Button>
                 </motion.div>
 
-                {/* Services Section with Cards */}
+                {/* Services Section */}
                 <h1 className="mb-5 text-2xl md:text-3xl text-center font-bold text-indigo-400">
                     Explore our Services
                 </h1>
 
                 <section id="services" className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    {Services.map( ( item, index ) => (
+                    {Services.map((item, index) => (
                         <motion.div
                             key={index}
                             initial={{ opacity: 0, y: 20 }}
@@ -125,19 +127,19 @@ const Home: React.FC = () => {
                             transition={{ delay: 0.1 * index, duration: 0.4 }}
                         >
                             <Card
-                                className={`shadow-md hover:shadow-xl transition-all duration-300 rounded-2xl p-5 h-full border ${darkMode
-                                    ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white border-gray-700'
-                                    : 'bg-gradient-to-br from-white via-gray-50 to-white text-black border-gray-200'
-                                    } cursor-pointer`}
+                                className={`shadow-md hover:shadow-xl transition-all duration-300 rounded-2xl p-5 h-full border ${
+                                    darkMode
+                                        ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white border-gray-700'
+                                        : 'bg-gradient-to-br from-white via-gray-50 to-white text-black border-gray-200'
+                                } cursor-pointer`}
                             >
                                 <CardHeader className="flex flex-row items-center gap-3">
                                     <CircleCheckBig className="text-indigo-500" size={24} />
                                     <CardTitle className="text-md md:text-lg font-semibold">{item}</CardTitle>
                                 </CardHeader>
                             </Card>
-
                         </motion.div>
-                    ) )}
+                    ))}
                 </section>
 
                 {/* Pricing Plans */}
@@ -145,10 +147,7 @@ const Home: React.FC = () => {
                     Pricing Plans
                 </h1>
 
-                <section
-                    id="pricing"
-                    className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-                >
+                <section id="pricing" className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     {[
                         {
                             name: 'Basic Plan',
@@ -178,7 +177,7 @@ const Home: React.FC = () => {
                             ],
                             cta: 'Contact Sales',
                         },
-                    ].map( ( plan, index ) => (
+                    ].map((plan, index) => (
                         <motion.div
                             key={index}
                             initial={{ opacity: 0, y: 20 }}
@@ -186,10 +185,11 @@ const Home: React.FC = () => {
                             transition={{ delay: 0.2 * index, duration: 0.5 }}
                         >
                             <Card
-                                className={`transition-all duration-300 rounded-2xl p-6 flex flex-col justify-between h-full border ${darkMode
-                                    ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white border-gray-700'
-                                    : 'bg-gradient-to-br from-white via-gray-50 to-white text-black border-gray-200'
-                                    } shadow-md hover:shadow-xl cursor-pointer`}
+                                className={`transition-all duration-300 rounded-2xl p-6 flex flex-col justify-between h-full border ${
+                                    darkMode
+                                        ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white border-gray-700'
+                                        : 'bg-gradient-to-br from-white via-gray-50 to-white text-black border-gray-200'
+                                } shadow-md hover:shadow-xl cursor-pointer`}
                             >
                                 <CardHeader className="mb-4">
                                     <CardTitle className="text-xl font-bold mb-1">{plan.name}</CardTitle>
@@ -199,32 +199,29 @@ const Home: React.FC = () => {
                                 </CardHeader>
                                 <CardContent className="mb-4">
                                     <ul
-                                        className={`list-disc pl-5 space-y-2 text-md ${darkMode ? 'text-violet-500' : 'text-gray-700'
-                                            }`}
+                                        className={`list-disc pl-5 space-y-2 text-md ${
+                                            darkMode ? 'text-violet-500' : 'text-gray-700'
+                                        }`}
                                     >
-
-                                        {plan.features.map( ( feature, idx ) => (
+                                        {plan.features.map((feature, idx) => (
                                             <li key={idx}>{feature}</li>
-                                        ) )}
+                                        ))}
                                     </ul>
                                 </CardContent>
-                                <Button
-                                    className="mt-auto bg-indigo-600 hover:bg-indigo-700 text-white cursor-pointer"
-                                    size="lg"
-                                >
+                                <Button className="mt-auto bg-indigo-600 hover:bg-indigo-700 text-white cursor-pointer" size="lg">
                                     {plan.cta}
                                 </Button>
                             </Card>
-
                         </motion.div>
-                    ) )}
+                    ))}
                 </section>
 
                 {/* Footer Section */}
-                <div className='mt-10 items-center justify-start '>
+                <div className="mt-10 items-center justify-start">
                     <Footer2 />
                 </div>
             </div>
+            <ScrollToTop />
         </div>
     );
 };
