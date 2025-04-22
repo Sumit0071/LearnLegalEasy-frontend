@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { setMode } from "@/redux/slices/themeSlice";
 import { Bell, Menu, X, Sun, Moon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import LearnLegalEasyLogo from "@/assets/LearnLegalEasy_logo.png";
 const navItems = [
@@ -12,8 +12,10 @@ const navItems = [
   { label: "Contact", href: "#contact" },
 ];
 
-const NavBar = () => {
+const NavBar = ( { onOpenSignup }: { onOpenSignup: () => void } ) => {
+
   const [isMenuOpen, setIsMenuOpen] = useState( false );
+  const [scrollProgress, setScrollProgress] = useState( 0 );
   const dispatch = useDispatch();
   const isDarkMode = useSelector( ( state: RootState ) => state.theme.darkMode );
 
@@ -21,6 +23,18 @@ const NavBar = () => {
   const toggleTheme = () => dispatch( setMode( !isDarkMode ) );
 
   const navLinkClass = "hover:text-blue-600 cursor-pointer";
+  useEffect(() => {
+    const updateScrollProgress = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.body.scrollHeight - window.innerHeight;
+      const scrolled = (scrollTop / docHeight) * 100;
+      setScrollProgress(scrolled);
+    };
+  
+    window.addEventListener("scroll", updateScrollProgress);
+    return () => window.removeEventListener("scroll", updateScrollProgress);
+  }, []);
+
 
   return (
     <nav
@@ -50,10 +64,10 @@ const NavBar = () => {
           <Button onClick={toggleTheme} variant="ghost" aria-label="Toggle dark mode">
             {isDarkMode ? <Sun className="text-yellow-400" /> : <Moon className="text-gray-800" />}
           </Button>
-          <Button className="bg-blue-600 text-white hover:bg-blue-700" variant="ghost" size="lg">
-            <a href="/signup">
-              Sign Up
-            </a>
+          <Button className="bg-blue-600 text-white hover:bg-blue-700 cursor-pointer" variant="ghost" size="lg" onClick={onOpenSignup}>
+
+            Sign Up
+
           </Button>
         </div>
       </div>
@@ -87,13 +101,17 @@ const NavBar = () => {
             <Button onClick={toggleTheme} variant="ghost" aria-label="Toggle dark mode">
               {isDarkMode ? <Sun className="text-yellow-400" /> : <Moon className="text-gray-800" />}
             </Button>
-            <Button className="bg-blue-600 text-white hover:bg-blue-700"> <a href="/signup">
+            <Button className="bg-blue-600 text-white hover:bg-blue-700 cursor-pointer" onClick={onOpenSignup}>
               Sign Up
-            </a>
+
             </Button>
           </div>
         </div>
       )}
+       <div
+        className="absolute bottom-0 left-0 h-[3px] bg-blue-600 transition-all duration-200 ease-out"
+        style={{ width: `${scrollProgress}%` }}
+      ></div>
     </nav>
   );
 };
