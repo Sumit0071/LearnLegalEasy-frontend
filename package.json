@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "lint:fix": "eslint src --ext ts,tsx,js,jsx --fix",
     "format": "prettier --write 'src/**/*.{ts,tsx,js,jsx,json,css,scss,html}'",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "echo \"No tests defined\" && exit 0"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.0",
