@@ -74,24 +74,37 @@ const ChatBar:React.FC<ChatBarProps> = ({ input, voice }) => {
     setFiles((prev) => prev.filter((f) => f.name !== fileName));
   };
 
-  return (
-    <div
-      className="w-full border-t px-4 py-3 flex flex-col sm:flex-row items-center gap-2 bg-white dark:bg-gray-900"
-      onDrop={handleDrop}
-      onDragOver={(e) => e.preventDefault()}
-    >
-      {/* Hidden File Input */}
-      <input
-        ref={fileInputRef}
-        type="file"
-        multiple
-        className="hidden"
-        onChange={handleFileChange}
-        aria-label="Attach files"
-      />
+ return (
+  <div
+    className="w-full border-t px-4 py-3 flex flex-col gap-2 bg-white dark:bg-gray-900"
+    onDrop={handleDrop}
+    onDragOver={(e) => e.preventDefault()}
+  >
+    {/* Attached Files Preview */}
+    {files.length > 0 && (
+      <div className="max-h-24 overflow-y-auto w-full rounded-md border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 p-2">
+        <p className="text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">📎 Attached Files:</p>
+        <ul className="space-y-1">
+          {files.map((file) => (
+            <li key={file.name} className="flex items-center justify-between bg-white dark:bg-gray-700 px-3 py-1 rounded">
+              <span className="truncate max-w-[200px] text-sm">{file.name}</span>
+              <Button
+                size="icon"
+                variant="ghost"
+                onClick={() => removeFile(file.name)}
+                aria-label="Remove file"
+              >
+                <X className="w-4 h-4 text-red-500" />
+              </Button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
 
-      {/* Message Input Area */}
-      <div className="flex-1 w-full relative">
+    {/* Chat Input Area */}
+    <div className="flex w-full items-center gap-2">
+      <div className="flex-1 relative">
         <textarea
           ref={textareaRef}
           rows={1}
@@ -101,8 +114,6 @@ const ChatBar:React.FC<ChatBarProps> = ({ input, voice }) => {
           onChange={(e) => setMessage(e.target.value)}
           className="w-full resize-none rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 p-3 pr-14 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
         />
-
-        {/* Attach Button */}
         <Button
           onClick={() => fileInputRef.current?.click()}
           variant="ghost"
@@ -111,8 +122,6 @@ const ChatBar:React.FC<ChatBarProps> = ({ input, voice }) => {
         >
           <Paperclip className="w-5 h-5 text-gray-500 dark:text-gray-400" />
         </Button>
-
-        {/* Mic Button */}
         <Button
           onClick={startSpeechToText}
           variant="ghost"
@@ -123,7 +132,6 @@ const ChatBar:React.FC<ChatBarProps> = ({ input, voice }) => {
         </Button>
       </div>
 
-      {/* Send Button */}
       <Button
         className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md"
         onClick={handleSend}
@@ -131,30 +139,20 @@ const ChatBar:React.FC<ChatBarProps> = ({ input, voice }) => {
       >
         <Send className="w-5 h-5" />
       </Button>
-
-      {/* File Preview */}
-      {files.length > 0 && (
-        <div className="mt-2 w-full text-sm text-gray-700 dark:text-gray-300">
-          <strong>📎 Attached:</strong>
-          <ul className="mt-1">
-            {files.map((file) => (
-              <li key={file.name} className="flex items-center justify-between">
-                <span className="truncate">{file.name}</span>
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  onClick={() => removeFile(file.name)}
-                  aria-label="Remove file"
-                >
-                  <X className="w-4 h-4 text-red-500" />
-                </Button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
     </div>
-  );
+
+    {/* Hidden File Input */}
+    <input
+      ref={fileInputRef}
+      type="file"
+      multiple
+      className="hidden"
+      onChange={handleFileChange}
+      aria-label="Attach files"
+    />
+  </div>
+);
+
 };
 
 export default ChatBar;
