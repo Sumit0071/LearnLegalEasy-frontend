@@ -4,7 +4,6 @@ import { setMode } from "@/redux/slices/themeSlice";
 import { Bell, Menu, X, Sun, Moon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import LearnLegalEasyLogo from "@/assets/LearnLegalEasy_logo.png";
 const navItems = [
   { label: "Services", href: "#services" },
   { label: "About", href: "#about" },
@@ -23,17 +22,17 @@ const NavBar = ( { onOpenSignup }: { onOpenSignup: () => void } ) => {
   const toggleTheme = () => dispatch( setMode( !isDarkMode ) );
 
   const navLinkClass = "hover:text-blue-600 cursor-pointer";
-  useEffect(() => {
+  useEffect( () => {
     const updateScrollProgress = () => {
       const scrollTop = window.scrollY;
       const docHeight = document.body.scrollHeight - window.innerHeight;
-      const scrolled = (scrollTop / docHeight) * 100;
-      setScrollProgress(scrolled);
+      const scrolled = ( scrollTop / docHeight ) * 100;
+      setScrollProgress( scrolled );
     };
-  
-    window.addEventListener("scroll", updateScrollProgress);
-    return () => window.removeEventListener("scroll", updateScrollProgress);
-  }, []);
+
+    window.addEventListener( "scroll", updateScrollProgress );
+    return () => window.removeEventListener( "scroll", updateScrollProgress );
+  }, [] );
 
 
   return (
@@ -43,6 +42,7 @@ const NavBar = ( { onOpenSignup }: { onOpenSignup: () => void } ) => {
     >
       {/* Logo */}
       <div className="flex items-center gap-2">
+        <link rel="preconnect" href="https://media-hosting.imagekit.io/" />
         <img src="https://media-hosting.imagekit.io/21baa5e0aa6140ee/LearnLegalEasy_logo (1).png?Expires=1839871673&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=BhY~dU1xhHiQ~3mAE1u5T3cgZxTE1MjxC~R6mGRwO1ZHSDpIZq1EbM1CXkp1o-dNq4VoN~AQeAlnsZSPSHqguXSotPJ58e~6LX6OZDOMhc52lNtjEWTDTkja011-V4hkmHFuNhE0ryBoyIecxBmAVJe6SYAQ7xsuJVT~5OW~PJ6kpCcv6R8vdH2bKpiMKRYYXFKVhqJ9ydPPt~i9a0jo3Aifq33bMNxS-AiuzULWEAb2HQgD~9XhX-isqv41Rq707sBOsuMTp5oTrf4t3gpMfhgHMkoB07OZ8vCvgLVSfi-GikcH9iHpra0amLchgCDb3bM-fZdXEVhgcHy5yqLwOw__" alt="" className="h-15 w-20 bg-transparent" />
 
         <span className="text-xl font-bold text-blue-600 cursor-pointer" ><a href="/">LearnLegalEasy</a></span>
@@ -108,7 +108,7 @@ const NavBar = ( { onOpenSignup }: { onOpenSignup: () => void } ) => {
           </div>
         </div>
       )}
-       <div
+      <div
         className="absolute bottom-0 left-0 h-[3px] bg-blue-600 transition-all duration-200 ease-out"
         style={{ width: `${scrollProgress}%` }}
       ></div>
