@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
-import { CircleCheckBig, Factory } from 'lucide-react';
+import { CircleCheckBig } from 'lucide-react';
 import {
   Card,
   CardHeader,
@@ -170,59 +170,59 @@ const Home: React.FC = () => {
         {/* Pricing Section */}
         <h1 className="mb-5 text-2xl md:text-3xl text-center font-bold text-indigo-400 mt-10">Pricing Plans</h1>
         <section id="pricing" className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {PricingPlans.map((plan, index) => {
-  const isPro = plan.name === 'Pro Plan';
+          {PricingPlans.map( ( plan, index ) => {
+            const isPro = plan.name === 'Pro Plan';
 
-  return (
-    <motion.div
-      key={index}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.2 * index, duration: 0.5 }}
-    >
-      <Card
-        className={`relative transition-all duration-300 rounded-2xl p-6 flex flex-col justify-between h-full border shadow-md hover:shadow-xl cursor-pointer
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 * index, duration: 0.5 }}
+              >
+                <Card
+                  className={`relative transition-all duration-300 rounded-2xl p-6 flex flex-col justify-between h-full border shadow-md hover:shadow-xl cursor-pointer
           ${darkMode
-            ? `${isPro ? 'border-green-400' : 'border-gray-700'} bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white`
-            : `${isPro ? 'border-green-500' : 'border-gray-200'} bg-gradient-to-br from-white via-gray-50 to-white text-black`
-          }`}
-      >
-        {isPro && (
-          <div className="absolute top-4 right-4 bg-green-500 text-white text-xs px-3 py-1 rounded-full font-semibold shadow-md">
-            Most Popular
-          </div>
-        )}
+                      ? `${isPro ? 'border-green-400' : 'border-gray-700'} bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white`
+                      : `${isPro ? 'border-green-500' : 'border-gray-200'} bg-gradient-to-br from-white via-gray-50 to-white text-black`
+                    }`}
+                >
+                  {isPro && (
+                    <div className="absolute top-4 right-4 bg-green-500 text-white text-xs px-3 py-1 rounded-full font-semibold shadow-md">
+                      Most Popular
+                    </div>
+                  )}
 
-        <CardHeader className="mb-4">
-          <CardTitle className="text-xl font-bold mb-1">{plan.name}</CardTitle>
-          <CardDescription className="text-lg font-semibold text-indigo-500">
-            {plan.price}
-          </CardDescription>
-        </CardHeader>
+                  <CardHeader className="mb-4">
+                    <CardTitle className="text-xl font-bold mb-1">{plan.name}</CardTitle>
+                    <CardDescription className="text-lg font-semibold text-indigo-500">
+                      {plan.price}
+                    </CardDescription>
+                  </CardHeader>
 
-        <CardContent className="mb-4">
-          <ul
-            className={`list-disc pl-5 space-y-2 text-md ${darkMode ? 'text-violet-500' : 'text-gray-700'}`}
-          >
-            {plan.features.map((feature, idx) => (
-              <li key={idx}>{feature}</li>
-            ))}
-          </ul>
-        </CardContent>
+                  <CardContent className="mb-4">
+                    <ul
+                      className={`list-disc pl-5 space-y-2 text-md ${darkMode ? 'text-violet-500' : 'text-gray-700'}`}
+                    >
+                      {plan.features.map( ( feature, idx ) => (
+                        <li key={idx}>{feature}</li>
+                      ) )}
+                    </ul>
+                  </CardContent>
 
-        <Button className="mt-auto bg-indigo-600 hover:bg-indigo-700 text-white" size="lg">
-          {plan.cta}
-        </Button>
-      </Card>
-    </motion.div>
-  );
-})}
-  
+                  <Button className="mt-auto bg-indigo-600 hover:bg-indigo-700 text-white" size="lg">
+                    {plan.cta}
+                  </Button>
+                </Card>
+              </motion.div>
+            );
+          } )}
+
         </section>
         <div className='mt-10 text-center'>
           <Faq />
-          
-</div>
+
+        </div>
         {/* Footer */}
         <div className="mt-10">
           <Footer2 />
