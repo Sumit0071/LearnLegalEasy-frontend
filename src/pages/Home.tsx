@@ -17,7 +17,8 @@ import { Footer2 } from '@/components/Footer';
 import SignupModal from '../components/Auth/SignupModal'; // ✅ Ensure this exists
 import Signup from '@/components/Auth/SignUp'; // ✅ Ensure this exists
 import Faq from '@/components/Faq';
-
+import LogoSlider from '@/components/LogoSlider';
+const images = ['Stripe.png', 'Google.png', 'Microsoft.png'];
 const Home: React.FC = () => {
   const darkMode = useSelector( ( state: RootState ) => state.theme?.darkMode );
   const [showSignupModal, setShowSignupModal] = useState( false );
@@ -223,6 +224,30 @@ const Home: React.FC = () => {
           <Faq />
 
         </div>
+        {/* ScrollBar Component */}
+        <section className="mt-20 text-center px-4">
+          <motion.h2
+            className="text-2xl md:text-3xl font-bold text-indigo-500 mb-6"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5 }}
+          >
+            Trusted by teams around the world
+          </motion.h2>
+
+          <motion.p
+            className="text-gray-500 dark:text-gray-400 mb-4 text-sm md:text-base"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.4 }}
+          >
+            Companies who believe in our mission to simplify legal understanding
+          </motion.p>
+
+          <LogoSlider images={images} />
+        </section>
+
         {/* Footer */}
         <div className="mt-10">
           <Footer2 />

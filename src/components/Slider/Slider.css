@@ -1,0 +1,11 @@
+/* Slider.css */
+.slider-track.paused {
+  animation-play-state: paused !important;
+}
+.slider-track {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
