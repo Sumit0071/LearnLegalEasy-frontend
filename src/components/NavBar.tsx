@@ -42,8 +42,7 @@ const NavBar = ( { onOpenSignup }: { onOpenSignup: () => void } ) => {
     >
       {/* Logo */}
       <div className="flex items-center gap-2">
-        <link rel="preconnect" href="https://media-hosting.imagekit.io/" />
-        <img src="https://media-hosting.imagekit.io/21baa5e0aa6140ee/LearnLegalEasy_logo (1).png?Expires=1839871673&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=BhY~dU1xhHiQ~3mAE1u5T3cgZxTE1MjxC~R6mGRwO1ZHSDpIZq1EbM1CXkp1o-dNq4VoN~AQeAlnsZSPSHqguXSotPJ58e~6LX6OZDOMhc52lNtjEWTDTkja011-V4hkmHFuNhE0ryBoyIecxBmAVJe6SYAQ7xsuJVT~5OW~PJ6kpCcv6R8vdH2bKpiMKRYYXFKVhqJ9ydPPt~i9a0jo3Aifq33bMNxS-AiuzULWEAb2HQgD~9XhX-isqv41Rq707sBOsuMTp5oTrf4t3gpMfhgHMkoB07OZ8vCvgLVSfi-GikcH9iHpra0amLchgCDb3bM-fZdXEVhgcHy5yqLwOw__" alt="" className="h-15 w-20 bg-transparent" />
+        <img src="LearnLegalEasy_logo.png" alt="" className="h-15 w-20 bg-transparent" />
 
         <span className="text-xl font-bold text-blue-600 cursor-pointer" ><a href="/">LearnLegalEasy</a></span>
       </div>
