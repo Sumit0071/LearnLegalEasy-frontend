@@ -15,7 +15,6 @@ interface SliderProps {
 const Slider: React.FC<SliderProps> & {
   Slide: React.FC<{ children: ReactNode }>;
 } = ({
-  width = "100px",
   duration = 20,
   toRight = false,
   pauseOnHover = false,
